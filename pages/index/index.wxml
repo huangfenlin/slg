@@ -1,0 +1,33 @@
+<view class="container">
+  <!-- 顶部 banner 走马灯 -->
+
+  <swiper class="banner" indicator-dots="{{true}}" autoplay="{{true}}" interval="{{3000}}" duration="{{500}}" circular="{{true}}" indicator-color="rgba(255, 255, 255, 0.6)" indicator-active-color="#ffffff">
+    <swiper-item wx:for="{{bannerList}}" wx:key="index" bindtap="onBannerTap" data-index="{{index}}">
+      <image src="{{item.imageUrl}}" class="banner-image" mode="aspectFill" />
+    </swiper-item>
+  </swiper>
+
+  <!-- 顶部 tab 切换 -->
+  <view class="top-tabs">
+    <view class="tab {{activeTab === 0 ? 'active' : ''}}" data-index="0" bindtap="onTabChange">
+      <image src="/assets/image.png" class="tab-icon" /><text class="tab-text">三国谋定天下</text>
+    </view>
+    <view class="tab {{activeTab === 1 ? 'active' : ''}}" data-index="1" bindtap="onTabChange">
+      <text class="tab-text">率士之滨</text>
+    </view>
+    <view class="tab {{activeTab === 2 ? 'active' : ''}}" data-index="2" bindtap="onTabChange">
+      <text class="tab-text">三国志战略版</text>
+    </view>
+
+  </view>
+
+  <!-- 功能区块 -->
+  <scroll-view class="feature-list" scroll-y="true">
+    <view wx:for="{{featureBlocks[activeTab]}}" wx:key="index" class="feature-wrap"> 
+      <view class="feature-block">
+        <text class="feature-title">{{item.title}}</text>
+        <image class="feature-img" src="{{item.image}}" mode="widthFix" />
+      </view>
+    </view>
+  </scroll-view>
+</view>
